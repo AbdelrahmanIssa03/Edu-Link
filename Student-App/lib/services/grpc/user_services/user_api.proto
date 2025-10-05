@@ -1,0 +1,103 @@
+syntax = "proto3";
+
+package userAPI;
+
+service Authentication{
+  rpc SignUp(SignUpRequest) returns (SignUpResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+service CourseManager{
+  rpc GetCourses(GetCoursesRequest) returns (GetCoursesResponse);
+}
+
+service NotificationManager{
+  rpc GetNotifications(GetNotificationsRequest) returns (GetNotificationsResponse);
+}
+
+message SignUpRequest {
+  string username = 1;
+  string email = 2;
+  string password = 3;
+  string role = 4;
+}
+
+message SignUpResponse {
+  bool success = 1;
+  string message = 2;
+  User user = 3;
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message LoginResponse {
+  bool success = 1;
+  string message = 2;
+  User user = 3;
+}
+
+message User {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string token = 4;
+  string refreshToken = 5;
+}
+
+message RefreshTokenRequest {
+  string refreshToken = 1;
+}
+
+message RefreshTokenResponse {
+  bool success = 1;
+  string token = 2;
+}
+
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+message ValidateTokenResponse {
+  bool valid = 1;
+}
+
+message GetCoursesRequest {
+  string userId = 1;
+}
+
+message GetCoursesResponse {
+  repeated Course courses = 1;
+}
+
+message Course {
+  string id = 1;
+  string name = 2;
+  repeated Session sessions = 3;
+}
+
+message Session {
+  string id = 1;
+  string title = 2;
+  string date = 3;
+  bool isLive = 4;
+}
+
+message GetNotificationsRequest {
+  string userId = 1;
+}
+
+message GetNotificationsResponse {
+  repeated Notification notifications = 1;
+}
+
+message Notification {
+  string id = 1;
+  string title = 2;
+  string subtitle = 3;
+  string time = 4;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package aiAPI;
+
+service SessionManager {
+  rpc SendQuestion(SendQuestionRequest) returns (SendQuestionResponse);
+}
+
+message SendQuestionRequest {
+  string question = 1;
+  string className = 2;
+}
+
+message SendQuestionResponse {
+  bool success = 1;
+  repeated string errorMessages = 2;
+  string answer = 3;
+}
