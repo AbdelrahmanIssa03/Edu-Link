@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package aiAPI;
+
+service SessionManager {
+    rpc SendAudio(SendAudioRequest) returns (SendAudioResponse);
+}
+
+service ClassManager{
+    rpc UploadFiles(UploadFilesRequest) returns (UploadFilesResponse);
+}
+
+message UploadFilesRequest{
+    repeated File files = 1;
+    string className = 2;
+}
+
+message File{
+    bytes data = 1;
+    string fileName = 2;
+}
+
+message UploadFilesResponse{
+    bool success = 1;
+    repeated string errorMessages = 2;
+}
+
+message SendAudioRequest {
+    bytes audioData = 1;
+    string className = 2;
+}
+
+message SendAudioResponse {
+    bool success = 1;
+    repeated string errorMessages = 2;
+}
