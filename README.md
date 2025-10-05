@@ -1,206 +1,104 @@
-# EduLink AI-Backend
+# 🧠 EduLink – AI-Powered Learning Ecosystem
 
-## Description
+EduLink is a modular system designed to enhance real-time interaction between **students** and **instructors** through AI-driven insights, semantic search, and intelligent course management.
 
-The AI Repository serves as the backbone of the **EduLink**, designed to enhance real-time student-instructor interaction. It manages transcriptions, and queries while enabling context-aware similarity searches for both instructors and students.
+This repository includes multiple services powering EduLink’s ecosystem — from AI processing to user management — and now extends to both **React (Vite)** and **Flutter** front-end clients.
 
-The repository is built around **Qdrant**, an open-source vector search database, to facilitate semantic similarity matching between student queries, instructor lectures, and uploaded course materials, and **LangChain** framework for easy integration of the AI components. This ensures real-time retrieval of relevant content.
+---
 
-## Table of Contents
+## 📘 Table of Contents
 
-- [Technologies Used](#technologies-used)
-- [Installation Instructions](#installation-instructions)
-- [Usage Instructions](#usage-instructions)
+1. [Overview](#overview)
+2. [Repositories](#repositories)
+3. [Technologies Used](#technologies-used)
+4. [AI Backend Setup (Python)](#ai-backend-setup-python)
+5. [User Backend Setup (Go)](#user-backend-setup-go)
+6. [Running the React App (Vite)](#react-app-setup)
+7. [Running the Flutter App](#flutter-app-setup)
+8. [Environment Variables](#environment-variables)
 
-### Technologies Used
+## 🧩 Overview
 
-- Python (Programming Language)
-- Qdrant (Vector Database)
-- LangChain (AI Framework)
-- gRPC (API Type)
-- Redis (Cache Management)
+EduLink bridges communication between **students** and **instructors** through real-time transcription, intelligent query handling, and context-aware search.  
+The platform integrates multiple services, including:
 
-### Installation Instructions
+- **AI Backend** – For semantic similarity search and retrieval-augmented responses  
+- **User Backend** – For authentication, roles, and access management  
+- **Frontend Clients** – React (Vite) web dashboard and Flutter mobile app  
 
-Follow the steps below to set up and run the project:
+---
 
-#### Prerequisites
+## 🗂 Repositories
 
-Ensure you have the following installed:
+| Service | Description |
+|----------|--------------|
+| **AI-Backend** | Handles transcription, semantic matching, and content retrieval using Qdrant and LangChain |
+| **User-Backend** | Manages authentication, authorization, and relational data using Go + PostgreSQL |
+| **React App** | Web dashboard built with React and Vite |
+| **Flutter App** | Cross-platform mobile client for students and instructors |
 
-- Python 3.12+
-- `pip` 25.0+ (usually installed with python)
+---
 
-#### Setup
+## ⚙️ Technologies Used
 
-1. **Clone the repository:**
+### Common
+- gRPC (Service Communication)
+- Docker (Deployment)
+- JWT Authentication
 
-   ```sh
-   git clone https://github.com/EduLink-Project/AI-Backend.git
-   cd <project_directory>
-   ```
+### AI-Backend
+- **Python 3.12+**
+- **Qdrant** (Vector Database)
+- **LangChain** (AI Integration)
 
-2. **Create and activate a virtual environment (optional but recommended):**
+### User-Backend
+- **Go 1.2+**
+- **PostgreSQL** (Relational Database)
 
-   ```sh
-   python -m venv venv
-   source venv/bin/activate  # On Windows use: venv\Scripts\activate
-   ```
+---
 
-3. **Install dependencies:**
+## AI Backend Setup (Python)
 
-   ```sh
-   pip install -r requirements.txt
-   ```
+### Installation
 
-4. **Set up environment variables:**
+```bash
+cd AI-Backend
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python main.py
+```
+## User Backend Setup (Go)
 
-   - The project includes an `.env` file with necessary configurations.
-   - The `.env` file exist in the Docuemtns folders
-   - Ensure you configure it as needed before running the application.
+### Installation
 
-5. **Run the application:**
+```bash
+cd User-Backend
+go mod tidy
+go run main.go
+```
 
-   ```sh
-   python main.py
-   ```
+## Instructor Dashboard (React)
 
-#### Troubleshooting
+### Installation
 
-- If you encounter any missing dependencies, try upgrading `pip` and reinstalling:
+```bash
+cd Instructor-Dashboard
+npm install
+npm run dev
+```
 
-  ```sh
-  pip install --upgrade pip
-  pip install -r requirements.txt --no-cache-dir
-  ```
+## Student Application (Flutter)
 
-- Ensure your `.env` file is correctly configured and has the necessary environment variables.
+### Installation
 
-### Usage Instructions
+```bash
+cd Student-App
+flutter pub get
+flutter run
+```
 
-### Running the Application
+## ⚙️ Environment Variables
 
-- Execute the following command to start the application:
-
-  ```sh
-  python main.py
-  ```
-
-  or
-
-  ``` sh
-  pymon main.py     # start the application with Hot-Reload
-  ```
-
-- If the application runs on a server, access it via:
-
-  ``` sh
-  0.0.0.0:3000
-  ```
-
-  (Adjust the port as per your configuration.)
-
-### Environment Variables
-
-- The `.env` file contains necessary configurations such as API keys, database credentials, or other settings.
-- Ensure the variables are correctly set up before running the application.
-
-# EduLink User-Backend
-
-## Description
-
-The User Repository manages user authentication, authorization, and data, ensuring secure access control for instructors and students. It tracks user roles, session participation, and interactions.
-
-Built on a scalable architecture, it leverages gRPC, JWT authentication, and a relational database for structured storage. With real-time updates, and access controls, it ensures a secure, responsive experience.
-
-## Table of Contents
-
-- [Technologies Used](#technologies-used)
-- [Installation Instructions](#installation-instructions)
-- [Usage Instructions](#usage-instructions)
-
-### Technologies Used
-
-- Go (Programming Language)
-- PostgreSQL (Relational Database)
-- gRPC (API Type)
-
-### Installation Instructions
-
-Follow the steps below to set up and run the project:
-
-#### Prerequisites
-
-Ensure you have the following installed:
-
-- Go 1.2+
-
-#### Setup
-
-1. **Clone the repository:**
-
-   ```sh
-   git clone https://github.com/EduLink-Project/User-Backend.git
-   cd <project_directory>
-   ```
-
-2. **Install dependencies:**
-
-   ```sh
-   go mod tidy
-   ```
-
-3. **Set up environment variables:**
-
-   - The project includes an `.env` file with necessary configurations.
-   - The `.env` file exist in the Docuemtns folders
-   - Ensure you configure it as needed before running the application.
-
-4. **Run the application:**
-
-   ```sh
-   go run main.go
-   ```
-
-#### Troubleshooting
-
-- If you encounter any missing dependencies, try running:
-
-  ```sh
-  go mod tidy
-  ```
-
-- Ensure your `.env` file is correctly configured and has the necessary environment variables.
-
-### Usage Instructions
-
-### Running the Application
-
-- Execute the following command to start the application:
-
-  ```sh
-  go run main.go
-  ```
-
-  or
-
-  ``` sh
-  air    # start the application with Live-Reload
-  ```
-
-  make sure to use `air init` command first before running `air`, and you can do it only once.
-
-- If the application runs on a server, access it via:
-
-  ``` sh
-  0.0.0.0:3000
-  ```
-
-  (Adjust the port as per your configuration.)
-
-### Environment Variables
-
-- The `.env` file contains necessary configurations such as API keys, database credentials, or other settings.
-- Ensure the variables are correctly set up before running the application.
-
-
+Each service directory includes a `.env.sample` file that outlines the required credentials and API keys needed for proper system operation.  
+You can use this file as a template to create your own `.env` file by updating it with valid values before running the application.
